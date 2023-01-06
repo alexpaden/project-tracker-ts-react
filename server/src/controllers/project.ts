@@ -18,7 +18,6 @@ export const getProjects = async (_req: Request, res: Response) => {
 
 export const createProject = async (req: Request, res: Response) => {
     const { name } = req.body;
-    
     const newProject = Project.create({
         name,
     });
@@ -30,28 +29,28 @@ export const createProject = async (req: Request, res: Response) => {
 
 export const editProject = async (req: Request, res: Response) => {
     const { name } = req.body;
-    const { id } = req.params;
-  
-    const targetProject = await Project.findOneBy({id: id});
-  
+    const { projectId } = req.params;
+    const targetProject = await Project.findOneBy({id: projectId});
+
     if (!targetProject) {
       return res.status(404).send({ message: 'Invalid project ID.' });
     }
-  
+
     targetProject.name = name;
     await targetProject.save();
+
     res.json(targetProject);
-  };
+};
   
-  export const deleteProject = async (req: Request, res: Response) => {
-    const { id } = req.params;
-  
-    const targetProject = await Project.findOneBy({id: id});
+export const deleteProject = async (req: Request, res: Response) => {
+    const { projectId } = req.params;
+    const targetProject = await Project.findOneBy({id: projectId});
   
     if (!targetProject) {
       return res.status(404).send({ message: 'Invalid project ID.' });
     }
-  
+
     await targetProject.remove();
+
     res.status(204).end();
-  };
+};
