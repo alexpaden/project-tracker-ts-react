@@ -1,13 +1,13 @@
-import express from 'express';
-import cors from 'cors';
-import 'express-async-errors';
-import projectRoutes from './routes/project';
+import express from 'express'
+import cors from 'cors'
+import 'express-async-errors'
+import projectRoutes from './routes/project'
 
-const app = express();
+const app = express()
 
-app.use(cors());
-app.use(express.json());
+app.use(cors())
+app.use(express.json())
 
-app.use('/projects', projectRoutes);
+app.use('/projects', projectRoutes)
 
-export default app;
+export default app

@@ -1,56 +1,56 @@
-import { Request, Response } from 'express';
-import { Project } from '../entity/Project';
+import { Request, Response } from 'express'
+import { Project } from '../entity/Project'
 
 const fieldsToSelect = [
-    'project.id',
-    'project.name',
-    'project.createdAt',
-    'project.updatedAt',
-];
+  'project.id',
+  'project.name',
+  'project.createdAt',
+  'project.updatedAt',
+]
 
 export const getProjects = async (_req: Request, res: Response) => {
-    const projects = await Project.createQueryBuilder('project')
+  const projects = await Project.createQueryBuilder('project')
     .select(fieldsToSelect)
-    .getMany();
+    .getMany()
 
-    res.json(projects);
-};
+  res.json(projects)
+}
 
 export const createProject = async (req: Request, res: Response) => {
-    const { name } = req.body;
-    const newProject = Project.create({
-        name,
-    });
+  const { name } = req.body
+  const newProject = Project.create({
+    name,
+  })
 
-    await newProject.save();
+  await newProject.save()
 
-    res.json(newProject);
-};
+  res.json(newProject)
+}
 
 export const editProject = async (req: Request, res: Response) => {
-    const { name } = req.body;
-    const { projectId } = req.params;
-    const targetProject = await Project.findOneBy({id: projectId});
+  const { name } = req.body
+  const { projectId } = req.params
+  const targetProject = await Project.findOneBy({ id: projectId })
 
-    if (!targetProject) {
-      return res.status(404).send({ message: 'Invalid project ID.' });
-    }
+  if (!targetProject) {
+    return res.status(404).send({ message: 'Invalid project ID.' })
+  }
 
-    targetProject.name = name;
-    await targetProject.save();
+  targetProject.name = name
+  await targetProject.save()
 
-    res.json(targetProject);
-};
-  
+  res.json(targetProject)
+}
+
 export const deleteProject = async (req: Request, res: Response) => {
-    const { projectId } = req.params;
-    const targetProject = await Project.findOneBy({id: projectId});
-  
-    if (!targetProject) {
-      return res.status(404).send({ message: 'Invalid project ID.' });
-    }
+  const { projectId } = req.params
+  const targetProject = await Project.findOneBy({ id: projectId })
 
-    await targetProject.remove();
+  if (!targetProject) {
+    return res.status(404).send({ message: 'Invalid project ID.' })
+  }
 
-    res.status(204).end();
-};
+  await targetProject.remove()
+
+  res.status(204).end()
+}

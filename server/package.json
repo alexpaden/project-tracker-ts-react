@@ -1,41 +1,41 @@
 {
-    "name": "bug-tracker-ts-react",
-    "version": "0.0.1",
-    "description": "Bug Tracker",
-    "scripts": {
-        "start": "node ./build/server.js",
-        "build": "rm -rf ./build && tsc -p ./",
-        "dev": "cross-env NODE_ENV=test ts-node-dev --respawn ./src/server.ts",
-        "pretty": "prettier --check src",
-        "lint": "yarn pretty && eslint --max-warnings 0 --ext ts,tsx,json src"
-    },
-    "dependencies": {
-        "cors": "^2.8.5",
-        "cross-env": "^7.0.3",
-        "dotenv": "^16.0.3",
-        "express": "^4.18.2",
-        "express-async-errors": "^3.1.1",
-        "http-errors": "^2.0.0",
-        "typeorm": "^0.3.11"
-    },
-    "devDependencies": {
-        "@types/cors": "^2.8.13",
-        "@types/express": "^4.17.15",
-        "@types/http-errors": "^2.0.1",
-        "@types/node": "^18.11.18",
-        "@typescript-eslint/eslint-plugin": "^5.48.0",
-        "@typescript-eslint/parser": "^5.48.0",
-        "eslint": "^8.31.0",
-        "eslint-config-prettier": "^8.6.0",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-no-relative-import-paths": "^1.5.2",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-prettier": "^4.2.1",
-        "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
-        "prettier": "^2.8.1",
-        "sqlite3": "^5.1.4",
-        "ts-node": "^10.9.1",
-        "ts-node-dev": "^2.0.0",
-        "typescript": "^4.9.4"
-    }
+  "name": "bug-tracker-ts-react",
+  "version": "0.0.1",
+  "description": "Bug Tracker",
+  "scripts": {
+    "start": "node ./build/server.js",
+    "build": "rm -rf ./build && tsc -p ./",
+    "dev": "cross-env NODE_ENV=test ts-node-dev --respawn ./src/server.ts",
+    "pretty": "prettier --check src",
+    "lint": "yarn pretty && eslint --max-warnings 0 --ext ts,tsx,json src"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "http-errors": "^2.0.0",
+    "typeorm": "^0.3.11"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.15",
+    "@types/http-errors": "^2.0.1",
+    "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-no-relative-import-paths": "^1.5.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+    "prettier": "^2.8.1",
+    "sqlite3": "^5.1.4",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.4"
+  }
 }
