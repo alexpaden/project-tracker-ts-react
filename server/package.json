@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Bug Tracker",
   "scripts": {
-    "start": "node ./build/server.js",
-    "build": "rm -rf ./build && tsc -p ./",
+    "start": "node ./dist/server.js",
+    "build": "rm -rf ./dist && tsc -p ./",
     "dev": "cross-env NODE_ENV=test ts-node-dev --respawn ./src/server.ts",
     "pretty": "prettier --check src",
     "lint": "yarn pretty && eslint --max-warnings 0 --ext ts,tsx,json src",

@@ -15,6 +15,7 @@ tmp
 
 # Build
 public/css/main.css
+dist
 
 # Coverage reports
 coverage
@@ -41,5 +42,5 @@ dist/**/*
 # personal notes
 notes.md
 
-#yarm
+#yarn
 cache
