@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "outDir": "./build/",
-    "rootDir": "./src",
+    "outDir": "dist",
+    "rootDir": "src",
     "module": "commonjs",
     "moduleResolution": "node",
     "noUnusedLocals": true,
@@ -20,7 +20,7 @@
     "skipLibCheck": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
-    "typeRoots": ["./types", "./node_modules/@types"]
-  }
+    "sourceMap": true
+  },
+  "include": ["src/**/*"]
 }
