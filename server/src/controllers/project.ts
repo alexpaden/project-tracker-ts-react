@@ -13,7 +13,7 @@ export const getProjects = async (_req: Request, res: Response) => {
     .select(fieldsToSelect)
     .getMany()
 
-  res.json(projects)
+  res.status(200).json(projects)
 }
 
 export const createProject = async (req: Request, res: Response) => {
