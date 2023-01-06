@@ -21,7 +21,7 @@ router.delete('/:projectId/bugs/:bugId', deleteBug);
 // Project note routes
 router.get('/:projectId/bugs/:bugId/notes', getNotes);
 router.post('/:projectId/bugs/:bugId/notes', postNote);
-router.delete('/:projectId/notes/:noteId', deleteNote);
-router.put('/:projectId/notes/:noteId', updateNote);
+router.delete('/:projectId/bugs/:bugId/notes/:noteId', deleteNote);
+router.put('/:projectId/bugs/:bugId/notes/:noteId', updateNote);
 
 export default router;
