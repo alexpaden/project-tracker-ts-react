@@ -1,6 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
-import ProjectList from './components/ProjectList';
+import logo from './logo.svg'
+import './App.css'
+import ProjectList from './components/ProjectList'
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         <ProjectList />
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
