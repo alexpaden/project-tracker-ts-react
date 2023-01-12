@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import IProjectData from '../types/project'
-import ProjectService from '../services/project'
+import ProjectService from '../services/projects'
 
 type Props = {}
 
@@ -26,7 +26,7 @@ export default class ProjectList extends Component<Props, State> {
     ProjectService.getAll()
       .then((response: any) => {
         this.setState({
-          projects: response.data,
+          projects: response,
         })
       })
       .catch((e: Error) => {
