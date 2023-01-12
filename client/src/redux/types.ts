@@ -1,8 +1,8 @@
 export interface ProjectState {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }
 
 export interface ProjectPayload {
-  name: string;
+  name: string
 }

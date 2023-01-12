@@ -1,9 +1,7 @@
 import { configureStore, Action } from '@reduxjs/toolkit'
 import { ThunkAction } from 'redux-thunk'
-import projectsReducer from './slices/projectsSlice';
-import type {} from 'redux-thunk/extend-redux';
-
-
+import projectsReducer from './slices/projectsSlice'
+import type {} from 'redux-thunk/extend-redux'
 
 const store = configureStore({
   reducer: {
