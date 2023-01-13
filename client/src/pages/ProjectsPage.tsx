@@ -1,23 +1,24 @@
-import { useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import ProjectsTable from '../components/ProjectsTable'
 import {
   fetchProjects,
   selectProjectsState,
 } from '../redux/slices/projectsSlice'
 
 const ProjectsPage = () => {
-  const dispatch = useDispatch()
-  dispatch(fetchProjects())
   const { projects } = useSelector(selectProjectsState)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchProjects())
+  }, [dispatch])
 
   return (
     <div>
       <h1>Projects</h1>
-      <ul>
-        {projects.map((project) => (
-          <li key={project.id}>{project.name}</li>
-        ))}
-      </ul>
+      <ProjectsTable projects={projects} />
     </div>
   )
 }

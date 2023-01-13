@@ -1,0 +1,6 @@
+.MiniTable {
+  border: 5px solid #ccc;
+  border-collapse: collapse;
+  width: 50%;
+  margin: 0 0 1em;
+}
