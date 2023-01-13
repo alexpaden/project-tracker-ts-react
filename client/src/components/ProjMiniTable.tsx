@@ -11,6 +11,7 @@ import {
   Paper,
 } from '@material-ui/core'
 import '../styles/projects.css'
+import { formatDateTime, truncateString } from '../utils/helperFuncs'
 
 const tableHeaders = ['Name', 'Bugs', 'Added']
 
@@ -38,8 +39,12 @@ const ProjectsTable: React.FC<{ projects: ProjectState[] }> = ({
                   to={`/projects/${p.id}`}
                   color="secondary"
                 >
-                  {p.name}
+                  {truncateString(p.name, 30)}
                 </Link>
+              </TableCell>
+              <TableCell align="center">bugs#</TableCell>
+              <TableCell align="center">
+                {formatDateTime(p.createdAt)}
               </TableCell>
               <TableCell align="center"></TableCell>
             </TableRow>

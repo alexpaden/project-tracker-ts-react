@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import ProjectsTable from '../components/ProjectsTable'
+import ProjMiniTable from '../components/ProjMiniTable'
 import {
   fetchProjects,
   selectProjectsState,
@@ -18,7 +18,7 @@ const ProjectsPage = () => {
   return (
     <div>
       <h1>Projects</h1>
-      <ProjectsTable projects={projects} />
+      <ProjMiniTable projects={projects} />
     </div>
   )
 }
