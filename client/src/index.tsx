@@ -3,10 +3,11 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import React from 'react'
-import { createBrowserRouter, Router, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProjectsPage from './pages/ProjectsPage'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+import NotFoundPage from './pages/NotFoundPage'
 
 const rootElement = document.getElementById('root')
 if (!rootElement) throw new Error('Failed to find the root element')
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/projects',
     element: <ProjectsPage />,
+  },
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
 ])
 
