@@ -1,6 +1,4 @@
 import { Link as RouterLink } from 'react-router-dom'
-import { ProjectState } from '../redux/types'
-
 import {
   Table,
   TableHead,
@@ -12,12 +10,23 @@ import {
 } from '@material-ui/core'
 import '../styles/projects.css'
 import { formatDateTime, truncateString } from '../utils/helperFuncs'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  selectProjectsState,
+  fetchProjects,
+} from '../redux/slices/projectsSlice'
 
 const tableHeaders = ['Name', 'Bugs', 'Added']
 
-const ProjectsTable: React.FC<{ projects: ProjectState[] }> = ({
-  projects,
-}) => {
+const ProjMiniTable = () => {
+  const { projects } = useSelector(selectProjectsState)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchProjects())
+  }, [dispatch])
+
   return (
     <Paper className="MiniTable">
       <Table>
@@ -55,4 +64,4 @@ const ProjectsTable: React.FC<{ projects: ProjectState[] }> = ({
   )
 }
 
-export default ProjectsTable
+export default ProjMiniTable
