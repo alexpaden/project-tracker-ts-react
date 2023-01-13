@@ -9,3 +9,8 @@ export interface ProjectState {
 export interface ProjectPayload {
   name: string
 }
+
+export interface NotifPayload {
+  message: string
+  type: 'success' | 'error'
+}

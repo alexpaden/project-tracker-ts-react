@@ -1,11 +1,13 @@
 import { configureStore, Action } from '@reduxjs/toolkit'
 import { ThunkAction } from 'redux-thunk'
 import projectsReducer from './slices/projectsSlice'
+import notificationReducer from './slices/notificationSlice'
 import type {} from 'redux-thunk/extend-redux'
 
 const store = configureStore({
   reducer: {
     projects: projectsReducer,
+    notification: notificationReducer,
   },
 })
 
