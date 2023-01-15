@@ -1,11 +1,3 @@
-import { useEffect, useReducer } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import ProjMiniTable from '../components/ProjMiniTable'
-import {
-  fetchProjects,
-  selectProjectsState,
-} from '../redux/slices/projectsSlice'
-
 const ProjectsPage = () => {
   return (
     <div>
