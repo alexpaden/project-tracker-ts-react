@@ -7,6 +7,7 @@ import {
 } from '../controllers/project'
 import { getBugs, createBug, updateBug, deleteBug } from '../controllers/bug'
 import { getNotes, postNote, deleteNote, updateNote } from '../controllers/note'
+import authChecker from '../middleware/authChecker'
 
 const router = express.Router()
 
@@ -17,10 +18,10 @@ router.put('/:id', editProject)
 router.delete('/:id', deleteProject)
 
 // Project bug routes
-router.get('/:projectId/bugs', getBugs)
-router.post('/:projectId/bugs', createBug)
-router.put('/:projectId/bugs/:bugId', updateBug)
-router.delete('/:projectId/bugs/:bugId', deleteBug)
+router.get('/:projectId/bugs', authChecker, getBugs)
+router.post('/:projectId/bugs', authChecker, createBug)
+router.put('/:projectId/bugs/:bugId', authChecker, updateBug)
+router.delete('/:projectId/bugs/:bugId', authChecker, deleteBug)
 
 // Project note routes
 router.get('/:projectId/bugs/:bugId/notes', getNotes)
