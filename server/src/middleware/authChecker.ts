@@ -7,11 +7,7 @@ interface TokenInterface {
   username: string
 }
 
-export interface AuthRequest extends Request {
-  user: string
-}
-
-const authChecker = (req: AuthRequest, res: Response, next: NextFunction) => {
+const authChecker = (req: Request, res: Response, next: NextFunction) => {
   try {
     const token = req.header('x-auth-token')
 
