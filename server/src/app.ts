@@ -3,6 +3,7 @@ import cors from 'cors'
 import 'express-async-errors'
 import projectRoutes from './routes/project'
 import authRoutes from './routes/auth'
+import userRoutes from './routes/user'
 import unknownEndPointHandler from './middleware/unknownEndpoint'
 import errorHandler from './middleware/errorHandler'
 
@@ -12,6 +13,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/', authRoutes)
+app.use('/users', userRoutes)
 app.use('/projects', projectRoutes)
 
 app.use(unknownEndPointHandler)
