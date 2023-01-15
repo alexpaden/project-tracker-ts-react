@@ -8,6 +8,8 @@ import ProjectsPage from './pages/ProjectsPage'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 import NotFoundPage from './pages/NotFoundPage'
+import SignupPage from './pages/Auth/SignupPage'
+import LoginPage from './pages/Auth/LoginPage'
 
 const rootElement = document.getElementById('root')
 if (!rootElement) throw new Error('Failed to find the root element')
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
   {
     path: '/projects',
     element: <ProjectsPage />,
+  },
+  {
+    path: '/login',
+    element: <LoginPage />,
+  },
+  {
+    path: '/signup',
+    element: <SignupPage />,
   },
   {
     path: '*',
