@@ -2,6 +2,7 @@ export interface ProjectState {
   id: string
   name: string
   bugs: Array<{ id: string }>
+  createdBy: User
   createdAt: Date
   updatedAt: Date
 }

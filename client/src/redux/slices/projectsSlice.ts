@@ -1,13 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState, AppThunk } from '../store'
 import projectService from '../../services/projectsService'
-import { ProjectState } from '../types'
+import { ProjectState, ProjectPayload } from '../types'
+import { notify } from './notificationSlice'
+import { NavigateFunction } from 'react-router-dom'
 import { getErrorMsg } from '../../utils/helperFuncs'
 
 interface InitialProjectsState {
   projects: ProjectState[]
-  fetchError: string | null
   fetchStatus: 'idle' | 'loading' | 'succeeded' | 'failed'
+  fetchError: string | null
+  submitLoading: boolean
   submitError: string | null
 }
 
@@ -15,6 +18,7 @@ const initialState: InitialProjectsState = {
   projects: [],
   fetchStatus: 'idle',
   fetchError: null,
+  submitLoading: false,
   submitError: null,
 }
 
@@ -27,22 +31,132 @@ const projectsSlice = createSlice({
       state.fetchStatus = 'succeeded'
       state.fetchError = null
     },
+    addProject: (state, action: PayloadAction<ProjectState>) => {
+      state.projects.push(action.payload)
+      state.submitLoading = false
+      state.submitError = null
+    },
+    removeProject: (state, action: PayloadAction<string>) => {
+      state.projects = state.projects.filter((p) => p.id !== action.payload)
+    },
+    updateProjectName: (
+      state,
+      action: PayloadAction<{
+        data: { name: string; updatedAt: Date }
+        projectId: string
+      }>
+    ) => {
+      state.projects = state.projects.map((p) =>
+        p.id === action.payload.projectId ? { ...p, ...action.payload.data } : p
+      )
+      state.submitLoading = false
+      state.submitError = null
+    },
+    setFetchProjectsLoading: (state) => {
+      state.fetchStatus = 'loading'
+      state.fetchError = null
+    },
     setFetchProjectsError: (state, action: PayloadAction<string>) => {
       state.fetchStatus = 'failed'
       state.fetchError = action.payload
     },
+
+    setSubmitProjectLoading: (state) => {
+      state.submitLoading = true
+      state.submitError = null
+    },
+    setSubmitProjectError: (state, action: PayloadAction<string>) => {
+      state.submitLoading = false
+      state.submitError = action.payload
+    },
+    clearSubmitProjectError: (state) => {
+      state.submitError = null
+    },
   },
 })
 
-export const { setProjects, setFetchProjectsError } = projectsSlice.actions
+export const {
+  setProjects,
+  addProject,
+  removeProject,
+  updateProjectName,
+  setFetchProjectsLoading,
+  setFetchProjectsError,
+  setSubmitProjectLoading,
+  setSubmitProjectError,
+  clearSubmitProjectError,
+} = projectsSlice.actions
 
 export const fetchProjects = (): AppThunk => {
   return async (dispatch) => {
     try {
+      dispatch(setFetchProjectsLoading())
       const allProjects = await projectService.getProjects()
       dispatch(setProjects(allProjects))
     } catch (e: any) {
       dispatch(setFetchProjectsError(getErrorMsg(e)))
+    }
+  }
+}
+
+export const createNewProject = (
+  projectData: ProjectPayload,
+  closeDialog?: () => void
+): AppThunk => {
+  return async (dispatch) => {
+    try {
+      dispatch(setSubmitProjectLoading())
+      const newProject = await projectService.createProject(projectData)
+      dispatch(addProject(newProject))
+      dispatch(notify('New project added!', 'success'))
+      closeDialog && closeDialog()
+    } catch (e: any) {
+      dispatch(setSubmitProjectError(getErrorMsg(e)))
+    }
+  }
+}
+
+export const deleteProject = (
+  projectId: string,
+  navigate: NavigateFunction
+): AppThunk => {
+  return async (dispatch) => {
+    try {
+      await projectService.deleteProject(projectId)
+      navigate('/')
+      dispatch(removeProject(projectId))
+      dispatch(notify('Deleted the project.', 'success'))
+    } catch (e: any) {
+      dispatch(notify(getErrorMsg(e), 'error'))
+    }
+  }
+}
+
+export const editProjectName = (
+  projectId: string,
+  name: string,
+  closeDialog?: () => void
+): AppThunk => {
+  return async (dispatch) => {
+    try {
+      dispatch(setSubmitProjectLoading())
+      const updatedProject = await projectService.editProjectName(
+        projectId,
+        name
+      )
+      dispatch(
+        updateProjectName({
+          data: {
+            name: updatedProject.name,
+            updatedAt: updatedProject.updatedAt,
+          },
+          projectId,
+        })
+      )
+      dispatch(notify("Edited the project's name!", 'success'))
+      closeDialog && closeDialog()
+    } catch (e: any) {
+      dispatch(setSubmitProjectError(getErrorMsg(e)))
     }
   }
 }
