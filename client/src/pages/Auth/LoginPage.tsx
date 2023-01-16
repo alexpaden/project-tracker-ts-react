@@ -27,7 +27,6 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import storage from '../../utils/localStorage'
-import ProjectsPage from '../ProjectsPage'
 
 interface InputValues {
   username: string
