@@ -1,7 +1,7 @@
 {
-  "name": "bug-tracker-ts-react",
+  "name": "project-tracker-ts-react",
   "version": "0.0.1",
-  "description": "Bug Tracker",
+  "description": "Lite Personal Project Manager",
   "scripts": {
     "start": "node ./dist/server.js",
     "build": "rm -rf ./dist && tsc -p ./",
