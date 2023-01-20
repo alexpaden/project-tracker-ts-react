@@ -1,6 +1,5 @@
 import http from '../http-common'
 import { ProjectPayload } from '../redux/types'
-import { setConfig } from './authService'
 
 const getProjects = async () => {
   const response = await http.get('/projects')
@@ -8,21 +7,17 @@ const getProjects = async () => {
 }
 
 const createProject = async (projectData: ProjectPayload) => {
-  const response = await http.post('/projects', projectData, setConfig())
+  const response = await http.post('/projects', projectData)
   return response.data
 }
 
 const deleteProject = async (projectId: string) => {
-  const response = await http.delete('/projects/${projectId}', setConfig())
+  const response = await http.delete('/projects/${projectId}')
   return response.data
 }
 
 const editProjectName = async (projectId: string, newName: string) => {
-  const response = await http.put(
-    '/projects/${projectId}',
-    { name: newName },
-    setConfig()
-  )
+  const response = await http.put('/projects/${projectId}', { name: newName })
   return response.data
 }
 

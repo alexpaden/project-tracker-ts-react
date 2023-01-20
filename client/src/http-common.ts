@@ -1,8 +1,24 @@
 import axios from 'axios'
+import storage from './utils/localStorage'
 
-export default axios.create({
+const http = axios.create({
   baseURL: 'http://localhost:8000/',
   headers: {
     'Content-type': 'application/json',
   },
 })
+
+http.interceptors.request.use(
+  (config) => {
+    const token = storage.loadUser()?.token
+    if (token) {
+      config.headers['x-auth-token'] = token
+    }
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
+
+export default http

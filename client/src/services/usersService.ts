@@ -1,8 +1,7 @@
 import http from '../http-common'
-import { setConfig } from './authService'
 
 const getUsers = async () => {
-  const response = await http.get('/users', setConfig())
+  const response = await http.get('/users')
   return response.data
 }
 
