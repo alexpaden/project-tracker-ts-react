@@ -16,6 +16,7 @@ import {
   selectProjectsState,
   fetchProjects,
 } from '../redux/slices/projectsSlice'
+import ProjectForm from '../components/ProjectForm'
 
 const tableHeaders = ['Name', 'Bugs', 'Added']
 
@@ -28,39 +29,43 @@ const ProjectsPage = () => {
   }, [dispatch])
 
   return (
-    <Paper className="MiniTable">
-      <Table>
-        <TableHead>
-          <TableRow>
-            {tableHeaders.map((t) => (
-              <TableCell key={t} align="center">
-                {t}
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {projects.map((p) => (
-            <TableRow key={p.id}>
-              <TableCell align="center">
-                <Link
-                  component={RouterLink}
-                  to={`/projects/${p.id}`}
-                  color="secondary"
-                >
-                  {truncateString(p.name, 30)}
-                </Link>
-              </TableCell>
-              <TableCell align="center">bugs#</TableCell>
-              <TableCell align="center">
-                {formatDateTime(p.createdAt)}
-              </TableCell>
-              <TableCell align="center"></TableCell>
+    <div className="ProjectsPage">
+      <ProjectForm />
+
+      <Paper className="MiniTable">
+        <Table>
+          <TableHead>
+            <TableRow>
+              {tableHeaders.map((t) => (
+                <TableCell key={t} align="center">
+                  {t}
+                </TableCell>
+              ))}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
+          </TableHead>
+          <TableBody>
+            {projects.map((p) => (
+              <TableRow key={p.id}>
+                <TableCell align="center">
+                  <Link
+                    component={RouterLink}
+                    to={`/projects/${p.id}`}
+                    color="secondary"
+                  >
+                    {truncateString(p.name, 30)}
+                  </Link>
+                </TableCell>
+                <TableCell align="center">bugs#</TableCell>
+                <TableCell align="center">
+                  {formatDateTime(p.createdAt)}
+                </TableCell>
+                <TableCell align="center"></TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
+    </div>
   )
 }
 
