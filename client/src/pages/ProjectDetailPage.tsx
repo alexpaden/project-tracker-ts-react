@@ -7,19 +7,13 @@ import ProjectForm from '../components/ProjectForm'
 import ConfirmDialog from '../components/ConfirmDialog'
 import FormDialog from '../components/FormDialog'
 import { formatDateTime } from '../utils/helperFuncs'
-
-import {
-  Paper,
-  Typography,
-  Button,
-  Divider,
-  useMediaQuery,
-} from '@material-ui/core'
+import { Paper, Typography, Divider, useMediaQuery } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
 import { useMainPageStyles } from '../styles/muiStyles'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
 import ErrorBox from '../components/ErrorBox'
+import BugsCard from '../components/BugsCard'
 
 const ProjectDetailsPage = () => {
   const classes = useMainPageStyles()
@@ -117,7 +111,7 @@ const ProjectDetailsPage = () => {
         )}
         <div className={classes.btnsWrapper}>{adminBtns()}</div>
       </Paper>
-      {/*<BugsCard projectId={projectId} isMobile={isMobile} />*/}
+      <BugsCard projectId={projectId || ''} isMobile={isMobile} />
     </div>
   )
 }
