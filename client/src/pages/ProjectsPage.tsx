@@ -16,7 +16,7 @@ import {
   selectProjectsState,
   fetchProjects,
 } from '../redux/slices/projectsSlice'
-import ProjectsActionCard from '../components/ProjActionCard'
+import ProjectsActionCard from '../components/project/ProjActionCard'
 import sortProjects from '../utils/sortProjects'
 
 const tableHeaders = ['Name', 'Bugs', 'Added']

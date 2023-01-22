@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
-import { BugState } from '../redux/types'
-import { formatDateTime } from '../utils/helperFuncs'
-import { priorityStyles, statusStyles } from '../styles/customStyles'
+import { BugState } from '../../redux/types'
+import { formatDateTime } from '../../utils/helperFuncs'
+import { priorityStyles, statusStyles } from '../../styles/customStyles'
 
 import {
   Table,
@@ -13,7 +13,7 @@ import {
   Link,
   Paper,
 } from '@material-ui/core'
-import { useTableStyles } from '../styles/muiStyles'
+import { useTableStyles } from '../../styles/muiStyles'
 
 const tableHeaders = [
   'Title',

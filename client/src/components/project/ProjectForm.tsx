@@ -5,12 +5,12 @@ import {
   editProjectName,
   selectProjectsState,
   clearSubmitProjectError,
-} from '../redux/slices/projectsSlice'
+} from '../../redux/slices/projectsSlice'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { TextField, Button } from '@material-ui/core'
-import { useFormStyles } from '../styles/muiStyles'
-import ErrorBox from './ErrorBox'
+import { useFormStyles } from '../../styles/muiStyles'
+import ErrorBox from '../ErrorBox'
 
 const validationSchema = yup.object({
   name: yup

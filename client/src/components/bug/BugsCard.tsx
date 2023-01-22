@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
+  fetchBugsByProjectId,
   selectBugsByProjectId,
   selectBugsState,
-} from '../redux/slices/bugsSlice'
-import { RootState } from '../redux/store'
+} from '../../redux/slices/bugsSlice'
+import { RootState } from '../../redux/store'
 import BugsTable from './BugsTable'
 import BugsActionCard from './BugsActionCard'
-import sortBugs from '../utils/sortBugs'
-import filterBugs from '../utils/filterBugs'
-import LoadingSpinner from './LoadingSpinner'
-import InfoText from './InfoText'
+import sortBugs from '../../utils/sortBugs'
+import filterBugs from '../../utils/filterBugs'
+import LoadingSpinner from '../LoadingSpinner'
+import InfoText from '../InfoText'
 import { Paper, Typography } from '@material-ui/core'
-import { useMainPageStyles } from '../styles/muiStyles'
+import { useMainPageStyles } from '../../styles/muiStyles'
 import BugReportOutlinedIcon from '@material-ui/icons/BugReportOutlined'
 
 interface BugsCardProps {
@@ -22,12 +23,20 @@ interface BugsCardProps {
 
 const BugsCard = ({ projectId, isMobile }: BugsCardProps) => {
   const classes = useMainPageStyles()
+  const dispatch = useDispatch()
   const bugs = useSelector((state: RootState) =>
     selectBugsByProjectId(state, projectId)
   )
   const { fetchLoading, fetchError, sortBy, filterBy } =
     useSelector(selectBugsState)
   const [filterValue, setFilterValue] = useState('')
+
+  useEffect(() => {
+    if (!bugs) {
+      dispatch(fetchBugsByProjectId(projectId))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const filteredSortedBugs =
     bugs &&

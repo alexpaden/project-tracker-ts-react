@@ -8,14 +8,14 @@ import {
   Link,
   Paper,
 } from '@material-ui/core'
-import '../styles/projects.css'
-import { formatDateTime, truncateString } from '../utils/helperFuncs'
+import '../../styles/projects.css'
+import { formatDateTime, truncateString } from '../../utils/helperFuncs'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   selectProjectsState,
   fetchProjects,
-} from '../redux/slices/projectsSlice'
+} from '../../redux/slices/projectsSlice'
 
 const tableHeaders = ['Name', 'Bugs', 'Added']
 

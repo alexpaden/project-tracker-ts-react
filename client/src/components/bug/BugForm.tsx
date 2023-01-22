@@ -5,9 +5,9 @@ import {
   editBug,
   clearSubmitBugError,
   selectBugsState,
-} from '../redux/slices/bugsSlice'
-import { BugPayload } from '../redux/types'
-import ErrorBox from './ErrorBox'
+} from '../../redux/slices/bugsSlice'
+import { BugPayload } from '../../redux/types'
+import ErrorBox from '../ErrorBox'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {
@@ -20,7 +20,7 @@ import {
   FormLabel,
   FormControl,
 } from '@material-ui/core'
-import { useFormStyles } from '../styles/muiStyles'
+import { useFormStyles } from '../../styles/muiStyles'
 import TitleIcon from '@material-ui/icons/Title'
 import SubjectIcon from '@material-ui/icons/Subject'
 

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectProjectById, deleteProject } from '../redux/slices/projectsSlice'
 import { selectAuthState } from '../redux/slices/authSlice'
 import { RootState } from '../redux/store'
-import ProjectForm from '../components/ProjectForm'
+import ProjectForm from '../components/project/ProjectForm'
 import ConfirmDialog from '../components/ConfirmDialog'
 import FormDialog from '../components/FormDialog'
 import { formatDateTime } from '../utils/helperFuncs'
@@ -13,7 +13,7 @@ import { useMainPageStyles } from '../styles/muiStyles'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
 import ErrorBox from '../components/ErrorBox'
-import BugsCard from '../components/BugsCard'
+import BugsCard from '../components/bug/BugsCard'
 
 const ProjectDetailsPage = () => {
   const classes = useMainPageStyles()

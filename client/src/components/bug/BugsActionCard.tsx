@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux'
-import FilterBar from './FilterBar'
-import SortBar from './SortBar'
-import FormDialog from './FormDialog'
+import FilterBar from '../FilterBar'
+import SortBar from '../SortBar'
+import FormDialog from '../FormDialog'
 import BugForm from './BugForm'
-import { BugSortValues, BugFilterValues } from '../redux/types'
+import { BugSortValues, BugFilterValues } from '../../redux/types'
 import {
   sortBugsBy,
   filterBugsBy,
   selectBugsState,
-} from '../redux/slices/bugsSlice'
+} from '../../redux/slices/bugsSlice'
 
 import {
   RadioGroup,
@@ -17,7 +17,7 @@ import {
   FormControlLabel,
   FormLabel,
 } from '@material-ui/core'
-import { useActionCardStyles } from '../styles/muiStyles'
+import { useActionCardStyles } from '../../styles/muiStyles'
 import AddIcon from '@material-ui/icons/Add'
 
 const menuItems = [

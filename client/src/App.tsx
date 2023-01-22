@@ -1,6 +1,6 @@
 import logo from './logo.svg'
 import './App.css'
-import ProjMiniTable from './components/ProjMiniTable'
+import ProjMiniTable from './components/project/ProjMiniTable'
 
 function App() {
   return (
