@@ -18,7 +18,7 @@ router.put('/:projectId', authChecker, editProject)
 router.delete('/:projectId', authChecker, deleteProject)
 
 // Project bug routes
-router.get('/:projectId/bugs', authChecker, getBugs)
+router.get('/:projectId/bugs', getBugs)
 router.post('/:projectId/bugs', authChecker, createBug)
 router.put('/:projectId/bugs/:bugId', authChecker, updateBug)
 router.delete('/:projectId/bugs/:bugId', authChecker, deleteBug)
