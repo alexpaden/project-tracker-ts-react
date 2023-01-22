@@ -10,6 +10,7 @@ import {
 
 import { useActionCardStyles } from '../styles/muiStyles'
 import AddIcon from '@material-ui/icons/Add'
+import FormDialog from './FormDialog'
 
 const menuItems = [
   { value: 'newest', label: 'Newest' },
@@ -54,7 +55,17 @@ const ProjectsActionCard: React.FC<{
           />
         </div>
       </div>
-      <ProjectForm />
+      <FormDialog
+        triggerBtn={{
+          type: 'normal',
+          text: 'Add Project',
+          icon: AddIcon,
+          size: 'large',
+        }}
+        title="Add a new project"
+      >
+        <ProjectForm editMode={null} />
+      </FormDialog>
     </div>
   )
 }

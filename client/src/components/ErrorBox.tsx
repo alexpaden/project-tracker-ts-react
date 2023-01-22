@@ -1,7 +1,7 @@
 import React from 'react'
 import { Alert, AlertTitle } from '@material-ui/lab'
 
-const ErrorBox: React.FC<{ errorMsg: string; clearErrorMsg: () => void }> = ({
+const ErrorBox: React.FC<{ errorMsg: any; clearErrorMsg: () => void }> = ({
   errorMsg,
   clearErrorMsg,
 }) => {
