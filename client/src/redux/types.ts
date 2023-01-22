@@ -41,3 +41,11 @@ export type ProjectSortValues =
   | 'least-bugs'
   | 'most-members'
   | 'least-members'
+
+export type BugPriority = 'low' | 'medium' | 'high'
+
+export interface BugPayload {
+  title: string
+  description: string
+  priority: BugPriority
+}
