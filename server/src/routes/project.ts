@@ -14,8 +14,8 @@ const router = express.Router()
 // Project routes
 router.get('/', getProjects)
 router.post('/', authChecker, createProject)
-router.put('/:id', authChecker, editProject)
-router.delete('/:id', authChecker, deleteProject)
+router.put('/:projectId', authChecker, editProject)
+router.delete('/:projectId', authChecker, deleteProject)
 
 // Project bug routes
 router.get('/:projectId/bugs', authChecker, getBugs)
