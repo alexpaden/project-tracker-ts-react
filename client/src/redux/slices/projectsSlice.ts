@@ -3,7 +3,6 @@ import { RootState, AppThunk } from '../store'
 import projectService from '../../services/projectsService'
 import { ProjectState, ProjectPayload, ProjectSortValues } from '../types'
 import { notify } from './notificationSlice'
-import { NavigateFunction } from 'react-router-dom'
 import { getErrorMsg } from '../../utils/helperFuncs'
 
 interface InitialProjectsState {
@@ -40,6 +39,8 @@ const projectsSlice = createSlice({
     },
     removeProject: (state, action: PayloadAction<string>) => {
       state.projects = state.projects.filter((p) => p.id !== action.payload)
+      state.submitLoading = false
+      state.submitError = null
     },
     updateProjectName: (
       state,
@@ -122,14 +123,10 @@ export const createNewProject = (
   }
 }
 
-export const deleteProject = (
-  projectId: string,
-  navigate: NavigateFunction
-): AppThunk => {
+export const deleteProject = (projectId: string): AppThunk => {
   return async (dispatch) => {
     try {
       await projectService.deleteProject(projectId)
-      navigate('/')
       dispatch(removeProject(projectId))
       dispatch(notify('Deleted the project.', 'success'))
     } catch (e: any) {
