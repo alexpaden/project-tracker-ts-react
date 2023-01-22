@@ -19,14 +19,14 @@ const menuItems = [
   { value: 'z-a', label: 'Name (Z - A)' },
   { value: 'most-bugs', label: 'Most Bugs' },
   { value: 'least-bugs', label: 'Least Bugs' },
-  { value: 'most-members', label: 'Most Members' },
-  { value: 'least-members', label: 'Least Members' },
 ]
 
-const ProjectsActionCard: React.FC<{
+interface filterProps {
   filterValue: string
-  setFilterValue: (filterValue: string) => void
-}> = ({ filterValue, setFilterValue }) => {
+  setFilterValue: (value: string) => void
+}
+
+const ProjectsActionCard = ({ filterValue, setFilterValue }: filterProps) => {
   const classes = useActionCardStyles()
   const dispatch = useDispatch()
   const { sortBy } = useSelector(selectProjectsState)
