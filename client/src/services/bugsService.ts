@@ -1,4 +1,3 @@
-import axios from 'axios'
 import http from '../http-common'
 import { BugPayload } from '../redux/types'
 
@@ -30,7 +29,7 @@ const deleteBug = async (projectId: string, bugId: string) => {
 }
 
 const closeBug = async (projectId: string, bugId: string) => {
-  const response = await axios.post(
+  const response = await http.post(
     `/projects/${projectId}/bugs/${bugId}/close`,
     null
   )
@@ -38,7 +37,7 @@ const closeBug = async (projectId: string, bugId: string) => {
 }
 
 const reopenBug = async (projectId: string, bugId: string) => {
-  const response = await axios.post(
+  const response = await http.post(
     `/projects/${projectId}/bugs/${bugId}/reopen`,
     null
   )
