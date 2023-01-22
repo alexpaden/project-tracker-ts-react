@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -37,12 +36,12 @@ interface EditProjectName extends BaseType {
 
 type ProjectFormProps = CreateProject | EditProjectName
 
-const ProjectForm: React.FC<ProjectFormProps> = ({
+const ProjectForm = ({
   closeDialog,
   editMode,
   currentName,
   projectId,
-}) => {
+}: ProjectFormProps) => {
   const classes = useFormStyles()
   const dispatch = useDispatch()
   const { submitLoading } = useSelector(selectProjectsState)
