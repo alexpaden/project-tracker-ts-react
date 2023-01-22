@@ -12,12 +12,13 @@ const createProject = async (projectData: ProjectPayload) => {
 }
 
 const deleteProject = async (projectId: string) => {
-  const response = await http.delete('/projects/${projectId}')
+  const response = await http.delete(`/projects/${projectId}`)
+  console.log(response.data)
   return response.data
 }
 
 const editProjectName = async (projectId: string, newName: string) => {
-  const response = await http.put('/projects/${projectId}', { name: newName })
+  const response = await http.put(`/projects/${projectId}`, { name: newName })
   return response.data
 }
 
