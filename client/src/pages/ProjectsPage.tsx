@@ -10,27 +10,43 @@ import {
 } from '@material-ui/core'
 import '../styles/projects.css'
 import { formatDateTime, truncateString } from '../utils/helperFuncs'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   selectProjectsState,
   fetchProjects,
 } from '../redux/slices/projectsSlice'
-import ProjectForm from '../components/ProjectForm'
+import ProjectsActionCard from '../components/ProjActionCard'
+import sortProjects from '../utils/sortProjects'
 
 const tableHeaders = ['Name', 'Bugs', 'Added']
 
 const ProjectsPage = () => {
-  const { projects } = useSelector(selectProjectsState)
+  const { projects, sortBy } = useSelector(selectProjectsState)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchProjects())
   }, [dispatch])
 
+  const [filterValue, setFilterValue] = useState('')
+
+  const filteredSortedProjects = sortProjects(
+    projects.filter((p) =>
+      p.name.toLowerCase().includes(filterValue.toLowerCase())
+    ),
+    sortBy
+  )
+
   return (
     <div className="ProjectsPage">
-      <ProjectForm />
+      <span>header here?</span>
+      <br />
+      <br />
+      <ProjectsActionCard
+        filterValue={filterValue}
+        setFilterValue={setFilterValue}
+      />
 
       <Paper className="MiniTable">
         <Table>
@@ -44,7 +60,7 @@ const ProjectsPage = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {projects.map((p) => (
+            {filteredSortedProjects?.map((p) => (
               <TableRow key={p.id}>
                 <TableCell align="center">
                   <Link

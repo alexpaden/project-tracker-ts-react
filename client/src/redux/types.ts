@@ -31,3 +31,13 @@ export interface CredentialsPayload {
   username: string
   password: string
 }
+
+export type ProjectSortValues =
+  | 'newest'
+  | 'oldest'
+  | 'a-z'
+  | 'z-a'
+  | 'most-bugs'
+  | 'least-bugs'
+  | 'most-members'
+  | 'least-members'

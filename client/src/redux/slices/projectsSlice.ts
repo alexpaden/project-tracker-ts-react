@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState, AppThunk } from '../store'
 import projectService from '../../services/projectsService'
-import { ProjectState, ProjectPayload } from '../types'
+import { ProjectState, ProjectPayload, ProjectSortValues } from '../types'
 import { notify } from './notificationSlice'
 import { NavigateFunction } from 'react-router-dom'
 import { getErrorMsg } from '../../utils/helperFuncs'
@@ -12,6 +12,7 @@ interface InitialProjectsState {
   fetchError: string | null
   submitLoading: boolean
   submitError: string | null
+  sortBy: ProjectSortValues
 }
 
 const initialState: InitialProjectsState = {
@@ -20,6 +21,7 @@ const initialState: InitialProjectsState = {
   fetchError: null,
   submitLoading: false,
   submitError: null,
+  sortBy: 'newest',
 }
 
 const projectsSlice = createSlice({
@@ -72,6 +74,9 @@ const projectsSlice = createSlice({
     clearSubmitProjectError: (state) => {
       state.submitError = null
     },
+    sortProjectsBy: (state, action: PayloadAction<ProjectSortValues>) => {
+      state.sortBy = action.payload
+    },
   },
 })
 
@@ -85,6 +90,7 @@ export const {
   setSubmitProjectLoading,
   setSubmitProjectError,
   clearSubmitProjectError,
+  sortProjectsBy,
 } = projectsSlice.actions
 
 export const fetchProjects = (): AppThunk => {
