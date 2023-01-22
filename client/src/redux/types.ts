@@ -42,10 +42,65 @@ export type ProjectSortValues =
   | 'most-members'
   | 'least-members'
 
+export type BugSortValues =
+  | 'newest'
+  | 'oldest'
+  | 'a-z'
+  | 'z-a'
+  | 'closed'
+  | 'reopened'
+  | 'h-l'
+  | 'l-h'
+  | 'updated'
+  | 'most-notes'
+  | 'least-notes'
+
 export type BugPriority = 'low' | 'medium' | 'high'
+
+export type BugFilterValues = 'all' | 'closed' | 'open'
 
 export interface BugPayload {
   title: string
   description: string
   priority: BugPriority
+}
+
+export interface EditedBugData extends BugPayload {
+  updatedAt: Date
+  updatedBy: User
+}
+
+export interface ClosedReopenedBugData {
+  isResolved: boolean
+  closedAt: Date
+  closedBy: User
+  reopenedAt: Date
+  reopenedBy: User
+}
+
+export interface Note {
+  id: number
+  bugId: string
+  body: string
+  author: User
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface BugState {
+  id: string
+  projectId: string
+  title: string
+  description: string
+  priority: BugPriority
+  notes: Note[]
+  isResolved: boolean
+  createdBy: User
+  updatedBy?: User
+  closedBy?: User
+  reopenedBy?: User
+  closedAt?: Date
+  reopenedAt?: Date
+  updatedAt?: Date
+  createdAt: Date
 }

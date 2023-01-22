@@ -5,6 +5,7 @@ import notificationReducer from './slices/notificationSlice'
 import type {} from 'redux-thunk/extend-redux'
 import authReducer from './slices/authSlice'
 import usersReducer from './slices/usersSlice'
+import bugsReducer from './slices/bugsSlice'
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     notification: notificationReducer,
     auth: authReducer,
     users: usersReducer,
+    bugs: bugsReducer,
   },
 })
 
