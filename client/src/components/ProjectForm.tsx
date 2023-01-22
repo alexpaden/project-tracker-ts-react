@@ -8,9 +8,9 @@ import {
 } from '../redux/slices/projectsSlice'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-
 import { TextField, Button } from '@material-ui/core'
 import { useFormStyles } from '../styles/muiStyles'
+import ErrorBox from './ErrorBox'
 
 const validationSchema = yup.object({
   name: yup
@@ -44,7 +44,7 @@ const ProjectForm = ({
 }: ProjectFormProps) => {
   const classes = useFormStyles()
   const dispatch = useDispatch()
-  const { submitLoading } = useSelector(selectProjectsState)
+  const { submitError, submitLoading } = useSelector(selectProjectsState)
   const {
     register,
     handleSubmit,
@@ -91,6 +91,12 @@ const ProjectForm = ({
       >
         {editMode ? 'Edit' : 'Create'}
       </Button>
+      {submitError && (
+        <ErrorBox
+          errorMsg={submitError}
+          clearErrorMsg={() => dispatch(clearSubmitProjectError())}
+        />
+      )}
     </form>
   )
 }
