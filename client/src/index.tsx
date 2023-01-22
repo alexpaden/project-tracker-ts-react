@@ -10,6 +10,7 @@ import store from './redux/store'
 import NotFoundPage from './pages/NotFoundPage'
 import SignupPage from './pages/Auth/SignupPage'
 import LoginPage from './pages/Auth/LoginPage'
+import ProjectDetailsPage from './pages/ProjectDetailPage'
 
 const rootElement = document.getElementById('root')
 if (!rootElement) throw new Error('Failed to find the root element')
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/projects',
     element: <ProjectsPage />,
+  },
+  {
+    path: '/projects/:projectId',
+    element: <ProjectDetailsPage />,
   },
   {
     path: '/login',
