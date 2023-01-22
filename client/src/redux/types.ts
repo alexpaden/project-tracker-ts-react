@@ -104,3 +104,5 @@ export interface BugState {
   updatedAt?: Date
   createdAt: Date
 }
+
+export type NoteSortValues = 'newest' | 'oldest' | 'updated'

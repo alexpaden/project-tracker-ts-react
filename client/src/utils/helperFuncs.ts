@@ -24,3 +24,7 @@ export const truncateString = (text: string, maxCharLimit: number) => {
 export const formatDateTime = (date: Date) => {
   return format(new Date(date), "dd/MM/yy',' h':'mm a")
 }
+
+export const formatTimeAgo = (date: Date) => {
+  return formatDistanceToNowStrict(new Date(date))
+}
