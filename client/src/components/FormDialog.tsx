@@ -13,11 +13,13 @@ import {
 } from '@material-ui/core'
 import { useDialogStyles } from '../styles/muiStyles'
 
-const FormDialog: React.FC<{
+interface formProps {
   title: string
   triggerBtn: TriggerButtonTypes
   children: React.ReactNode
-}> = ({ triggerBtn, children, title }) => {
+}
+
+const FormDialog = ({ title, triggerBtn, children }: formProps) => {
   const classes = useDialogStyles()
   const [dialogOpen, setDialogOpen] = useState(false)
 
