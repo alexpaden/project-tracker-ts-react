@@ -28,7 +28,7 @@ const SortBar: React.FC<{
           <InputAdornment position="start">
             <SortIcon
               color="primary"
-              fontSize={size === 'small' ? 'default' : 'large'}
+              fontSize={size === 'small' ? 'medium' : 'large'}
             />
           </InputAdornment>
         }

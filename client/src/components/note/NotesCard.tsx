@@ -61,7 +61,7 @@ const NotesCard = ({ notes, projectId, bugId, isMobile }: NotesCardProps) => {
           className={classes.flexHeader}
         >
           <ForumOutlinedIcon
-            fontSize={isMobile ? 'default' : 'large'}
+            fontSize={isMobile ? 'medium' : 'large'}
             style={{ marginRight: '0.2em' }}
           />
           Notes

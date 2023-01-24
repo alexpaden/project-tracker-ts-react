@@ -42,7 +42,7 @@ const FormDialog = ({ title, triggerBtn, children }: formProps) => {
           className={triggerBtn.className}
           style={triggerBtn.style}
         >
-          <triggerBtn.icon fontSize={triggerBtn.iconSize || 'default'} />
+          <triggerBtn.icon fontSize={triggerBtn.iconSize || 'medium'} />
         </IconButton>
       )
     } else if (triggerBtn.type === 'menu') {

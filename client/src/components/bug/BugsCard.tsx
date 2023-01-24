@@ -86,7 +86,7 @@ const BugsCard = ({ projectId, isMobile }: BugsCardProps) => {
         className={classes.flexHeader}
       >
         <BugReportOutlinedIcon
-          fontSize={isMobile ? 'default' : 'large'}
+          fontSize={isMobile ? 'medium' : 'large'}
           style={{ marginRight: '0.2em' }}
         />
         Bugs

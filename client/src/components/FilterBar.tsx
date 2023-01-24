@@ -25,7 +25,7 @@ const FilterBar: React.FC<{
               <InputAdornment position="start">
                 <SearchIcon
                   color="primary"
-                  fontSize={size === 'small' ? 'default' : 'large'}
+                  fontSize={size === 'small' ? 'medium' : 'large'}
                 />
               </InputAdornment>
             ),
@@ -35,7 +35,7 @@ const FilterBar: React.FC<{
                   <IconButton onClick={() => setFilterValue('')} size="small">
                     <ClearIcon
                       color="primary"
-                      fontSize={size === 'small' ? 'default' : 'large'}
+                      fontSize={size === 'small' ? 'medium' : 'large'}
                     />
                   </IconButton>
                 ) : (
