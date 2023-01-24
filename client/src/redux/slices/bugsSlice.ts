@@ -99,7 +99,11 @@ const bugsSlice = createSlice({
     },
     addNote: (
       state,
-      action: PayloadAction<{ note: Note; bugId: string; projectId: string }>
+      action: PayloadAction<{
+        note: Note
+        bugId: string
+        projectId: string
+      }>
     ) => {
       state.bugs[action.payload.projectId] = state.bugs[
         action.payload.projectId
