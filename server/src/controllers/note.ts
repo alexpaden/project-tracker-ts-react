@@ -2,24 +2,20 @@ import { Request, Response } from 'express'
 import { Note } from '../entity/Note'
 import { Project } from '../entity/Project'
 
-const fieldsToSelect = [
-  'note.id',
-  'note.bugId',
-  'note.body',
-  'note.createdAt',
-  'note.updatedAt',
-  'author.id',
-  'author.username',
-]
-
 export const getNotes = async (req: Request, res: Response) => {
-  const { bugId } = req.params
-  const notes = await Note.createQueryBuilder('note')
-    .where('"bugId" = :bugId', { bugId })
-    .select(fieldsToSelect)
-    .getMany()
+  const { projectId } = req.params
 
-  res.json(notes)
+  const targetProject = await Project.createQueryBuilder('project')
+    .leftJoinAndSelect('project.bugs', 'bug')
+    .leftJoinAndSelect('bug.notes', 'note')
+    .where('project.id = :id', { id: projectId })
+    .getOne()
+
+  if (!targetProject) {
+    return res.status(404).send({ message: 'Invalid project ID.' })
+  }
+
+  res.json(targetProject.bugs)
 }
 
 export const postNote = async (req: Request, res: Response) => {
@@ -41,10 +37,7 @@ export const postNote = async (req: Request, res: Response) => {
 export const deleteNote = async (req: Request, res: Response) => {
   const { projectId, noteId } = req.params
 
-  const targetProject = await Project.findOne({
-    where: { id: projectId },
-    relations: ['members'],
-  })
+  const targetProject = await Project.findOneBy({ id: projectId })
 
   if (!targetProject) {
     return res.status(404).send({ message: 'Invalid project ID.' })
