@@ -32,11 +32,8 @@ const BugsCard = ({ projectId, isMobile }: BugsCardProps) => {
   const [filterValue, setFilterValue] = useState('')
 
   useEffect(() => {
-    if (!bugs) {
-      dispatch(fetchBugsByProjectId(projectId))
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    dispatch(fetchBugsByProjectId(projectId))
+  }, [dispatch, projectId])
 
   const filteredSortedBugs =
     bugs &&
