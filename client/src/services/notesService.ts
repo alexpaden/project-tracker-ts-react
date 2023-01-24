@@ -5,6 +5,7 @@ const createNote = async (
   bugId: string,
   noteBody: string
 ) => {
+  console.log('noteBody', noteBody)
   const response = await http.post(
     `/projects/${projectId}/bugs/${bugId}/notes`,
     { body: noteBody }
@@ -14,17 +15,23 @@ const createNote = async (
 
 const editNote = async (
   projectId: string,
+  bugId: string,
   noteId: number,
   noteBody: string
 ) => {
-  const response = await http.put(`/projects/${projectId}/notes/${noteId}`, {
-    body: noteBody,
-  })
+  const response = await http.put(
+    `/${projectId}/bugs/${bugId}/notes/${noteId}`,
+    {
+      body: noteBody,
+    }
+  )
   return response.data
 }
 
-const deleteNote = async (projectId: string, noteId: number) => {
-  const response = await http.delete(`/projects/${projectId}/notes/${noteId}`)
+const deleteNote = async (projectId: string, bugId: string, noteId: number) => {
+  const response = await http.delete(
+    `/${projectId}/bugs/${bugId}/notes/${noteId}`
+  )
   return response.data
 }
 

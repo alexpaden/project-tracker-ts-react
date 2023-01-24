@@ -344,6 +344,7 @@ export const editNote = (
       dispatch(setSubmitBugLoading())
       const returnedData = await noteService.editNote(
         projectId,
+        bugId,
         noteId,
         noteBody
       )
@@ -366,7 +367,7 @@ export const deleteNote = (
 ): AppThunk => {
   return async (dispatch) => {
     try {
-      await noteService.deleteNote(projectId, noteId)
+      await noteService.deleteNote(projectId, bugId, noteId)
       dispatch(removeNote({ noteId, bugId, projectId }))
       dispatch(notify('Deleted the note.', 'success'))
     } catch (e: any) {
