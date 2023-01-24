@@ -22,16 +22,11 @@ import DoneOutlineIcon from '@material-ui/icons/DoneOutline'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
 
-interface ParamTypes {
-  projectId: string
-  bugId: string
-}
-
 const BugsDetailsPage = () => {
   const classes = useMainPageStyles()
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-  const { projectId, bugId } = useParams()
+  const { projectId, bugId } = useParams<string>()
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const bug = useSelector((state: RootState) =>
@@ -61,14 +56,9 @@ const BugsDetailsPage = () => {
     description,
     priority,
     isResolved,
-    createdBy,
     createdAt,
     updatedBy,
     updatedAt,
-    closedBy,
-    closedAt,
-    reopenedBy,
-    reopenedAt,
     notes,
   } = bug
 
@@ -96,24 +86,18 @@ const BugsDetailsPage = () => {
   }
 
   const statusInfo = () => {
-    if (!isResolved && reopenedAt && reopenedBy) {
+    if (!isResolved) {
       return (
         <span>
-          <div style={statusCSS}>Re-opened</div> -{' '}
-          <em>{formatDateTime(reopenedAt)}</em> ~{' '}
-          <strong>{reopenedBy.username}</strong>
+          <div style={statusCSS}>Open</div>
         </span>
       )
-    } else if (isResolved && closedAt && closedBy) {
+    } else if (isResolved) {
       return (
         <span>
-          <div style={statusCSS}>Closed</div> -{' '}
-          <em>{formatDateTime(closedAt)}</em> ~{' '}
-          <strong>{closedBy.username}</strong>
+          <div style={statusCSS}>Closed</div>
         </span>
       )
-    } else {
-      return <div style={statusCSS}>Open</div>
     }
   }
 
@@ -223,12 +207,12 @@ const BugsDetailsPage = () => {
         </Typography>
         <Typography color="secondary" variant="subtitle2">
           Created: <em>{formatDateTime(createdAt)}</em> ~{' '}
-          <strong>{createdBy.username}</strong>
+          {/*<strong>createdBy.username</strong>*/}
         </Typography>
         {updatedBy && updatedAt && (
           <Typography color="secondary" variant="subtitle2">
             Updated: <em>{formatDateTime(updatedAt)}</em> ~{' '}
-            <strong>{updatedBy.username}</strong>
+            {/*<strong>updatedBy.username</strong>*/}
           </Typography>
         )}
         <div className={classes.btnsWrapper}>
