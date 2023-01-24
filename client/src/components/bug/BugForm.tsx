@@ -122,43 +122,30 @@ const BugForm = ({
       <Controller
         control={control}
         name="priority"
+        defaultValue={currentData?.priority || 'low'}
         render={({ field }) => (
-          <FormControl className={classes.radioGroupForm}>
-            <RadioGroup row defaultValue="low" className={classes.radioGroup}>
-              <FormLabel className={classes.radioGroupLabel}>
-                Priority:
-              </FormLabel>
-              <div className={classes.formControlLabels}>
-                <FormControlLabel
-                  value="low"
-                  control={<Radio color="primary" />}
-                  label="Low"
-                />
-                <FormControlLabel
-                  value="medium"
-                  control={<Radio color="primary" />}
-                  label="Medium"
-                />
-                <FormControlLabel
-                  value="high"
-                  control={<Radio color="primary" />}
-                  label="High"
-                />
-              </div>
+          <FormControl className={classes.fieldMargin}>
+            <FormLabel component="legend">Priority</FormLabel>
+            <RadioGroup aria-label="priority" {...field}>
+              <FormControlLabel value="low" control={<Radio />} label="Low" />
+              <FormControlLabel
+                value="medium"
+                control={<Radio />}
+                label="Medium"
+              />
+              <FormControlLabel value="high" control={<Radio />} label="High" />
             </RadioGroup>
           </FormControl>
         )}
       />
       <Button
-        size="large"
-        color="primary"
-        variant="contained"
-        fullWidth
         className={classes.submitBtn}
         type="submit"
+        variant="contained"
+        color="primary"
         disabled={submitLoading}
       >
-        {isEditMode ? 'Update Bug' : 'Create New Bug'}
+        {isEditMode ? 'Update Bug' : 'Create Bug'}
       </Button>
       {submitError && (
         <ErrorBox
