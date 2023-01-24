@@ -29,17 +29,13 @@ const deleteBug = async (projectId: string, bugId: string) => {
 }
 
 const closeBug = async (projectId: string, bugId: string) => {
-  const response = await http.post(
-    `/projects/${projectId}/bugs/${bugId}/close`,
-    null
-  )
+  const response = await http.post(`/projects/${projectId}/bugs/${bugId}/close`)
   return response.data
 }
 
 const reopenBug = async (projectId: string, bugId: string) => {
   const response = await http.post(
-    `/projects/${projectId}/bugs/${bugId}/reopen`,
-    null
+    `/projects/${projectId}/bugs/${bugId}/reopen`
   )
   return response.data
 }
