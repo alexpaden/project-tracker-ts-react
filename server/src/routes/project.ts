@@ -5,7 +5,14 @@ import {
   editProject,
   deleteProject,
 } from '../controllers/project'
-import { getBugs, createBug, updateBug, deleteBug } from '../controllers/bug'
+import {
+  getBugs,
+  createBug,
+  updateBug,
+  deleteBug,
+  closeBug,
+  reopenBug,
+} from '../controllers/bug'
 import { getNotes, postNote, deleteNote, updateNote } from '../controllers/note'
 import authChecker from '../middleware/authChecker'
 
@@ -22,11 +29,13 @@ router.get('/:projectId/bugs', getBugs)
 router.post('/:projectId/bugs', authChecker, createBug)
 router.put('/:projectId/bugs/:bugId', authChecker, updateBug)
 router.delete('/:projectId/bugs/:bugId', authChecker, deleteBug)
+router.post('/:projectId/bugs/:bugId/close', authChecker, closeBug)
+router.post('/:projectId/bugs/:bugId/reopen', authChecker, reopenBug)
 
 // Project note routes
 router.get('/:projectId/bugs/:bugId/notes', getNotes)
-router.post('/:projectId/bugs/:bugId/notes', postNote)
-router.delete('/:projectId/bugs/:bugId/notes/:noteId', deleteNote)
-router.put('/:projectId/bugs/:bugId/notes/:noteId', updateNote)
+router.post('/:projectId/bugs/:bugId/notes', authChecker, postNote)
+router.delete('/:projectId/bugs/:bugId/notes/:noteId', authChecker, deleteNote)
+router.put('/:projectId/bugs/:bugId/notes/:noteId', authChecker, updateNote)
 
 export default router
