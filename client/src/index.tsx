@@ -11,6 +11,7 @@ import NotFoundPage from './pages/NotFoundPage'
 import SignupPage from './pages/Auth/SignupPage'
 import LoginPage from './pages/Auth/LoginPage'
 import ProjectDetailsPage from './pages/ProjectDetailPage'
+import BugDetailsPage from './pages/BugDetailsPage'
 
 const rootElement = document.getElementById('root')
 if (!rootElement) throw new Error('Failed to find the root element')
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: '/projects/:projectId',
     element: <ProjectDetailsPage />,
+  },
+  {
+    path: '/projects/:projectId/bugs/:bugId',
+    element: <BugDetailsPage />,
   },
   {
     path: '/login',
