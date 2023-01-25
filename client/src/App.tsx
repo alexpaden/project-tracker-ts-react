@@ -1,18 +1,40 @@
-import logo from './logo.svg'
-import './App.css'
-import ProjMiniTable from './components/project/ProjMiniTable'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { autoLogin } from './redux/slices/authSlice'
+import { selectThemeState, toggleDarkMode } from './redux/slices/themesSlice'
+import NavBar from './components/NavBar'
+import ToastNotification from './components/ToastNotifications'
+import storage from './utils/localStorage'
 
-function App() {
+import customTheme from './styles/customTheme'
+import { useBodyStyles } from './styles/muiStyles'
+import { ThemeProvider } from '@material-ui/core/styles'
+import ProjRoutes from './Routes'
+
+const App = () => {
+  const dispatch = useDispatch()
+  const { darkMode } = useSelector(selectThemeState)
+  const classes = useBodyStyles(darkMode)()
+
+  useEffect(() => {
+    dispatch(autoLogin())
+  }, [])
+
+  useEffect(() => {
+    const loadedDarkMode = storage.loadDarkMode()
+    if (loadedDarkMode && !darkMode) {
+      dispatch(toggleDarkMode())
+    }
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <ProjMiniTable />
-      </header>
-    </div>
+    <ThemeProvider theme={customTheme(darkMode)}>
+      <div className={classes.root}>
+        <NavBar />
+        <ProjRoutes />
+        <ToastNotification />
+      </div>
+    </ThemeProvider>
   )
 }
 

@@ -1,4 +1,5 @@
 const storageKeyUser = 'bugTrackerUserKey'
+const storageKeyDarkMode = 'bugTrackerDarkMode'
 
 interface User {
   id: string
@@ -22,6 +23,20 @@ const loadUser = () => {
 
 const removeUser = () => localStorage.removeItem(storageKeyUser)
 
-const storage = { saveUser, loadUser, removeUser }
+const saveDarkMode = (boolean: boolean) => {
+  localStorage.setItem(storageKeyDarkMode, String(boolean))
+}
+
+const loadDarkMode = () => {
+  const darkMode = localStorage.getItem(storageKeyDarkMode)
+
+  if (darkMode) {
+    return JSON.parse(darkMode)
+  }
+
+  return null
+}
+
+const storage = { saveUser, loadUser, removeUser, saveDarkMode, loadDarkMode }
 
 export default storage

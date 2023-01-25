@@ -6,6 +6,7 @@ import type {} from 'redux-thunk/extend-redux'
 import authReducer from './slices/authSlice'
 import usersReducer from './slices/usersSlice'
 import bugsReducer from './slices/bugsSlice'
+import themesReducer from './slices/themesSlice'
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     auth: authReducer,
     users: usersReducer,
     bugs: bugsReducer,
+    themes: themesReducer,
   },
 })
 
