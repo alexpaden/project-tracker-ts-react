@@ -1,35 +1,33 @@
-import { Link as RouterLink } from 'react-router-dom'
-import {
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  Link,
-  Paper,
-} from '@material-ui/core'
-import '../styles/projects.css'
-import { formatDateTime, truncateString } from '../utils/helperFuncs'
 import { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
-  selectProjectsState,
   fetchProjects,
+  selectProjectsState,
 } from '../redux/slices/projectsSlice'
-import ProjectsActionCard from '../components/project/ProjActionCard'
+import ProjectsTable from '../components/project/ProjTable'
+import ProjectActionCard from '../components/project/ProjActionCard'
+import ProjectsListMobile from '../components/project/ProjListMobile'
 import sortProjects from '../utils/sortProjects'
+import LoadingSpinner from '../components/LoadingSpinner'
+import InfoText from '../components/InfoText'
 
-const tableHeaders = ['Name', 'Bugs', 'Added']
+import { Paper, Typography, useMediaQuery } from '@material-ui/core'
+import { useTheme } from '@material-ui/core/styles'
+import { useMainPageStyles } from '../styles/muiStyles'
+import AssignmentIcon from '@material-ui/icons/Assignment'
 
 const ProjectsPage = () => {
-  const { projects, sortBy } = useSelector(selectProjectsState)
+  const classes = useMainPageStyles()
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('xs'))
+  const { projects, fetchStatus, fetchError, sortBy } =
+    useSelector(selectProjectsState)
+  const [filterValue, setFilterValue] = useState('')
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchProjects())
   }, [dispatch])
-
-  const [filterValue, setFilterValue] = useState('')
 
   const filteredSortedProjects = sortProjects(
     projects.filter((p) =>
@@ -38,48 +36,76 @@ const ProjectsPage = () => {
     sortBy
   )
 
-  return (
-    <div className="ProjectsPage">
-      <span>header here?</span>
-      <br />
-      <br />
-      <ProjectsActionCard
-        filterValue={filterValue}
-        setFilterValue={setFilterValue}
-      />
+  const projectsDataToDisplay = () => {
+    if (fetchStatus === 'loading') {
+      return (
+        <LoadingSpinner
+          marginTop={isMobile ? '4em' : '9em'}
+          size={isMobile ? 60 : 80}
+        />
+      )
+    } else if (fetchStatus === 'succeeded' && projects.length === 0) {
+      return (
+        <InfoText
+          text="No Projects added yet."
+          variant={isMobile ? 'h6' : 'h5'}
+        />
+      )
+    } else if (fetchStatus === 'failed' && fetchError) {
+      return (
+        <InfoText
+          text={`Error: ${fetchError}`}
+          variant={isMobile ? 'h6' : 'h5'}
+        />
+      )
+    } else if (
+      fetchStatus === 'succeeded' &&
+      projects.length !== 0 &&
+      filteredSortedProjects?.length === 0
+    ) {
+      return (
+        <InfoText text="No matches found." variant={isMobile ? 'h6' : 'h5'} />
+      )
+    } else if (filteredSortedProjects != null) {
+      return (
+        <div className={classes.projectsListTable}>
+          {!isMobile ? (
+            <ProjectsTable projects={filteredSortedProjects} />
+          ) : (
+            <ProjectsListMobile projects={filteredSortedProjects} />
+          )}
+        </div>
+      )
+    }
+  }
 
-      <Paper className="MiniTable">
-        <Table>
-          <TableHead>
-            <TableRow>
-              {tableHeaders.map((t) => (
-                <TableCell key={t} align="center">
-                  {t}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredSortedProjects?.map((p) => (
-              <TableRow key={p.id}>
-                <TableCell align="center">
-                  <Link
-                    component={RouterLink}
-                    to={`/projects/${p.id}`}
-                    color="secondary"
-                  >
-                    {truncateString(p.name, 30)}
-                  </Link>
-                </TableCell>
-                <TableCell align="center">bugs#</TableCell>
-                <TableCell align="center">
-                  {formatDateTime(p.createdAt)}
-                </TableCell>
-                <TableCell align="center"></TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+  return (
+    <div className={classes.root}>
+      <Paper className={classes.headerPaper}>
+        <AssignmentIcon
+          fontSize="large"
+          color="primary"
+          className={classes.headerIcon}
+        />
+        <div>
+          <Typography variant={isMobile ? 'h6' : 'h5'} color="secondary">
+            All Projects
+          </Typography>
+          <Typography
+            variant={isMobile ? 'caption' : 'subtitle1'}
+            color="secondary"
+          >
+            List of all the created or joined projects.
+          </Typography>
+        </div>
+      </Paper>
+      <Paper className={classes.projectsPaper}>
+        <ProjectActionCard
+          filterValue={filterValue}
+          setFilterValue={setFilterValue}
+          isMobile={isMobile}
+        />
+        {projectsDataToDisplay()}
       </Paper>
     </div>
   )
