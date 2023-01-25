@@ -5,7 +5,6 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './redux/store'
-import ProjRoutes from './Routes'
 
 const rootElement = document.getElementById('root')
 if (!rootElement) throw new Error('Failed to find the root element')

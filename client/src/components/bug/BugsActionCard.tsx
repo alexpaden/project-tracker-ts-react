@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
-import FilterBar from '../FilterBar'
-import SortBar from '../SortBar'
-import FormDialog from '../FormDialog'
+import FilterBar from '../menu/FilterBar'
+import SortBar from '../menu/SortBar'
+import FormDialog from '../menu/FormDialog'
 import BugForm from './BugForm'
 import { BugSortValues, BugFilterValues } from '../../redux/types'
 import {

@@ -9,7 +9,7 @@ import ProjectActionCard from '../components/project/ProjActionCard'
 import ProjectsListMobile from '../components/project/ProjListMobile'
 import sortProjects from '../utils/sortProjects'
 import LoadingSpinner from '../components/LoadingSpinner'
-import InfoText from '../components/InfoText'
+import InfoText from '../components/menu/InfoText'
 
 import { Paper, Typography, useMediaQuery } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'

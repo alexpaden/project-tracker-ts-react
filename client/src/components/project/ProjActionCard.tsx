@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
-import FilterBar from '../FilterBar'
-import SortBar from '../SortBar'
+import FilterBar from '../menu/FilterBar'
+import SortBar from '../menu/SortBar'
 import ProjectForm from './ProjectForm'
 import { ProjectSortValues } from '../../redux/types'
 import {
@@ -10,7 +10,7 @@ import {
 
 import { useActionCardStyles } from '../../styles/muiStyles'
 import AddIcon from '@material-ui/icons/Add'
-import FormDialog from '../FormDialog'
+import FormDialog from '../menu/FormDialog'
 
 const menuItems = [
   { value: 'newest', label: 'Newest' },

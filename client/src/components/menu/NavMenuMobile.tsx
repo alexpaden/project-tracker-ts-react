@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import { UserState } from '../redux/types'
+import { UserState } from '../../redux/types'
 import DarkModeSwitch from './ThemeSwitch'
 
 import { IconButton, Menu, MenuItem, Avatar } from '@material-ui/core'
-import { useNavStyles } from '../styles/muiStyles'
+import { useNavStyles } from '../../styles/muiStyles'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'

@@ -1,6 +1,6 @@
 import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectAuthState, logout } from '../redux/slices/authSlice'
+import { selectAuthState, logout } from '../../redux/slices/authSlice'
 import NavMenu from './NavMenu'
 import NavMenuMobile from './NavMenuMobile'
 
@@ -12,9 +12,8 @@ import {
   useMediaQuery,
   Container,
 } from '@material-ui/core'
-import { useNavStyles } from '../styles/muiStyles'
+import { useNavStyles } from '../../styles/muiStyles'
 import { useTheme } from '@material-ui/core/styles'
-import FavoriteIcon from '@material-ui/icons/Favorite'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
 const NavBar = () => {

@@ -6,7 +6,7 @@ import {
   clearSubmitBugError,
   selectBugsState,
 } from '../../redux/slices/bugsSlice'
-import ErrorBox from '../../components/ErrorBox'
+import ErrorBox from '../ErrorBox'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 

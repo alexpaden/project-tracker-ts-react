@@ -1,7 +1,5 @@
 import { Link as RouterLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import { ProjectState } from '../../redux/types'
-import { selectAuthState } from '../../redux/slices/authSlice'
 import { formatDateTime, truncateString } from '../../utils/helperFuncs'
 
 import { Divider, Typography, Link } from '@material-ui/core'
@@ -9,9 +7,10 @@ import { useMainPageStyles } from '../../styles/muiStyles'
 import BugReportTwoToneIcon from '@material-ui/icons/BugReportTwoTone'
 import OpenInNewIcon from '@material-ui/icons/OpenInNew'
 
-const ProjectsListMobile: React.FC<{ projects: ProjectState[] }> = ({
-  projects,
-}) => {
+interface ProjProps {
+  projects: ProjectState[]
+}
+const ProjectsListMobile = ({ projects }: ProjProps) => {
   const classes = useMainPageStyles()
 
   return (

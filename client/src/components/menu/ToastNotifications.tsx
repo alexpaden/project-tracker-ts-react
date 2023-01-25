@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   clearNotification,
   selectNotifState,
-} from '../redux/slices/notificationSlice'
+} from '../../redux/slices/notificationSlice'
 
 import { Snackbar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'

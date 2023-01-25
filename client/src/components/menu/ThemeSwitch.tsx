@@ -1,6 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { toggleDarkMode, selectThemeState } from '../redux/slices/themesSlice'
-import storage from '../utils/localStorage'
+import {
+  toggleDarkMode,
+  selectThemeState,
+} from '../../redux/slices/themesSlice'
+import storage from '../../utils/localStorage'
 
 import { IconButton, Button } from '@material-ui/core'
 import NightsStayOutlinedIcon from '@material-ui/icons/NightsStayOutlined'

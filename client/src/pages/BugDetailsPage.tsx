@@ -6,9 +6,9 @@ import {
   closeReopenBug,
 } from '../redux/slices/bugsSlice'
 import { RootState } from '../redux/store'
-import FormDialog from '../components/FormDialog'
+import FormDialog from '../components/menu/FormDialog'
 import BugForm from '../components/bug/BugForm'
-import ConfirmDialog from '../components/ConfirmDialog'
+import ConfirmDialog from '../components/menu/ConfirmDialog'
 import NotesCard from '../components/note/NotesCard'
 import { formatDateTime } from '../utils/helperFuncs'
 import { priorityStyles, statusStyles } from '../styles/customStyles'

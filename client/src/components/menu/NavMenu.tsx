@@ -1,9 +1,9 @@
 import { Link as RouterLink } from 'react-router-dom'
-import { UserState } from '../redux/types'
+import { UserState } from '../../redux/types'
 import DarkModeSwitch from './ThemeSwitch'
 
 import { Button, Avatar, Typography } from '@material-ui/core'
-import { useNavStyles } from '../styles/muiStyles'
+import { useNavStyles } from '../../styles/muiStyles'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
