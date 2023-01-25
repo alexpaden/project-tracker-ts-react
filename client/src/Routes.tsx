@@ -1,10 +1,4 @@
-import {
-  Route,
-  Routes,
-  BrowserRouter,
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import LoginPage from './pages/Auth/LoginPage'
 import SignupPage from './pages/Auth/SignupPage'
 import ProjectsPage from './pages/ProjectsPage'
@@ -26,7 +20,7 @@ const ProjRoutes = () => {
   const isLoggedIn = storage.loadUser() || user
 
   return (
-    <Container>
+    <Container disableGutters={isMobile}>
       <Routes>
         <Route path="/" element={<ProjectsPage />} />
         <Route path="/projects" element={<ProjectsPage />} />

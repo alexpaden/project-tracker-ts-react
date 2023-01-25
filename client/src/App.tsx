@@ -18,14 +18,14 @@ const App = () => {
 
   useEffect(() => {
     dispatch(autoLogin())
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     const loadedDarkMode = storage.loadDarkMode()
     if (loadedDarkMode && !darkMode) {
       dispatch(toggleDarkMode())
     }
-  }, [])
+  }, [dispatch, darkMode])
 
   return (
     <ThemeProvider theme={customTheme(darkMode)}>

@@ -47,7 +47,6 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
   } = useForm<InputValues>({
     mode: 'onChange',
