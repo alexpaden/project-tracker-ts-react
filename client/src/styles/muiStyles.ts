@@ -9,7 +9,7 @@ export const useBodyStyles = (darkMode: boolean) =>
         flexDirection: 'column',
         flex: 1,
         minHeight: '100vH',
-        backgroundColor: darkMode ? '#333' : '#00968810',
+        backgroundColor: darkMode ? '#242424' : '#dadae8',
       },
     }),
     { index: 1 }

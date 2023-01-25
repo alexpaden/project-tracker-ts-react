@@ -60,7 +60,8 @@ const NavBar = () => {
           </Button>
           {!isMobile && (
             <Typography variant="caption" color="secondary">
-              <FavoriteIcon style={{ fontSize: 10 }} color="primary" /> by{' '}
+              {' '}
+              {'>'} Issue Tracker
             </Typography>
           )}
         </div>
