@@ -18,9 +18,11 @@ import ProjMenu from './ProjMenu'
 
 const tableHeaders = ['Name', 'Bugs', 'Admin', 'Added', 'Actions']
 
-const ProjectsTable: React.FC<{ projects: ProjectState[] }> = ({
-  projects,
-}) => {
+interface ProjTableProps {
+  projects: ProjectState[]
+}
+
+const ProjectsTable = ({ projects }: ProjTableProps) => {
   const classes = useTableStyles()
   const navigate = useNavigate()
   const { user } = useSelector(selectAuthState)
