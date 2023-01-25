@@ -21,12 +21,17 @@ const menuItems = [
   { value: 'least-bugs', label: 'Least Bugs' },
 ]
 
-interface filterProps {
+interface cardProps {
   filterValue: string
   setFilterValue: (value: string) => void
+  isMobile: boolean
 }
 
-const ProjectsActionCard = ({ filterValue, setFilterValue }: filterProps) => {
+const ProjectsActionCard = ({
+  filterValue,
+  setFilterValue,
+  isMobile,
+}: cardProps) => {
   const classes = useActionCardStyles()
   const dispatch = useDispatch()
   const { sortBy } = useSelector(selectProjectsState)
@@ -44,6 +49,7 @@ const ProjectsActionCard = ({ filterValue, setFilterValue }: filterProps) => {
             filterValue={filterValue}
             setFilterValue={setFilterValue}
             label="Projects"
+            size={isMobile ? 'small' : 'medium'}
           />
         </div>
         <div className={classes.sortBarWrapper}>
@@ -52,16 +58,26 @@ const ProjectsActionCard = ({ filterValue, setFilterValue }: filterProps) => {
             handleSortChange={handleSortChange}
             menuItems={menuItems}
             label="Projects"
+            size={isMobile ? 'small' : 'medium'}
           />
         </div>
       </div>
       <FormDialog
-        triggerBtn={{
-          type: 'normal',
-          text: 'Add Project',
-          icon: AddIcon,
-          size: 'large',
-        }}
+        triggerBtn={
+          isMobile
+            ? {
+                type: 'fab',
+                variant: 'extended',
+                text: 'Project',
+                icon: AddIcon,
+              }
+            : {
+                type: 'normal',
+                text: 'Add Project',
+                icon: AddIcon,
+                size: 'large',
+              }
+        }
         title="Add a new project"
       >
         <ProjectForm editMode={null} />
