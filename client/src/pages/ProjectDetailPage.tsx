@@ -58,7 +58,7 @@ const ProjectDetailsPage = () => {
   }
 
   const adminBtns = () => {
-    //if (!isAdmin) return null
+    if (!isAdmin) return null
 
     return (
       <>

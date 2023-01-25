@@ -2,6 +2,7 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { BugState } from '../../redux/types'
 import { formatDateTime } from '../../utils/helperFuncs'
 import { priorityStyles, statusStyles } from '../../styles/customStyles'
+import BugsMenu from './BugsMenu'
 
 import {
   Table,
@@ -13,6 +14,8 @@ import {
   Paper,
 } from '@material-ui/core'
 import { useTableStyles } from '../../styles/muiStyles'
+import { selectAuthState } from '../../redux/slices/authSlice'
+import { useSelector } from 'react-redux'
 
 const tableHeaders = [
   'Title',
@@ -31,6 +34,7 @@ interface BugsTableProps {
 const BugsTable = ({ bugs }: BugsTableProps) => {
   const classes = useTableStyles()
   const navigate = useNavigate()
+  const { user } = useSelector(selectAuthState)
 
   return (
     <Paper className={classes.table}>
@@ -91,8 +95,20 @@ const BugsTable = ({ bugs }: BugsTableProps) => {
                   ? 'n/a'
                   : `${formatDateTime(b.updatedAt)} ~ ${b.updatedBy}`}
               </TableCell>
-              <TableCell align="center">notes#</TableCell>
-              <TableCell align="center">Bugs Menu</TableCell>
+              <TableCell align="center">{b.notes.length}</TableCell>
+              <TableCell align="center">
+                <BugsMenu
+                  projectId={b.projectId}
+                  bugId={b.id}
+                  isAdmin={b.createdBy.id === user?.id}
+                  currentData={{
+                    title: b.title,
+                    description: b.description,
+                    priority: b.priority,
+                  }}
+                  isResolved={b.isResolved}
+                />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
