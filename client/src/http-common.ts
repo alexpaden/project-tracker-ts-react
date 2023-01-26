@@ -2,7 +2,8 @@ import axios from 'axios'
 import storage from './utils/localStorage'
 
 const http = axios.create({
-  baseURL: 'http://localhost:8000/',
+  baseURL: 'https://project-manager-375822.uc.r.appspot.com/',
+  //baseURL: 'http://localhost:3001/',
   headers: {
     'Content-type': 'application/json',
   },

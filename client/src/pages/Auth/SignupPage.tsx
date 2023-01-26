@@ -95,6 +95,8 @@ const SignupPage = () => {
             alt="bug-logo"
             className={classes.titleLogo}
           />
+          <h1> Signup has been DISABLED! </h1>
+          {/*
           <form onSubmit={handleSubmit(handleSignup)} className={classes.form}>
             <div className={classes.inputField}>
               <TextField
@@ -203,6 +205,7 @@ const SignupPage = () => {
               Sign Up
             </Button>
           </form>
+          */}
           <Typography variant="body1" className={classes.footerText}>
             Already have an account?{' '}
             <Link

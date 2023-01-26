@@ -9,7 +9,7 @@ import storage from './utils/localStorage'
 import customTheme from './styles/customTheme'
 import { useBodyStyles } from './styles/muiStyles'
 import { ThemeProvider } from '@material-ui/core/styles'
-import ProjRoutes from './Routes'
+import ProjRoutes from './routes'
 
 const App = () => {
   const dispatch = useDispatch()
