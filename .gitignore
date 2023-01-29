@@ -45,3 +45,6 @@ notes.md
 #yarn
 cache
 server/app.yaml
+
+# Local Netlify folder
+.netlify
