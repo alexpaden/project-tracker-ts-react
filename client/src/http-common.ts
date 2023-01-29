@@ -3,7 +3,7 @@ import storage from './utils/localStorage'
 
 const http = axios.create({
   baseURL: 'https://project-manager-375822.uc.r.appspot.com/',
-  //baseURL: 'http://localhost:3001/',
+  //baseURL: 'http://localhost:8080/',
   headers: {
     'Content-type': 'application/json',
   },
