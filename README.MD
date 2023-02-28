@@ -43,7 +43,6 @@ To prepare this project for deployment
 
 2) uncomment the localhost:8080 API url
 
-3) uncomment the signup form in the Auth/Signup.tsx page
 ```
 
 Deploy client
